@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up</title>
+    <link href="~/Styles/style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+          rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="signup-box">
+        <h1>Sign Up</h1>
+        <h4>It's free and only takes a minute</h4>
+        <form>
+            <label>First Name</label>
+            <input type="text" placeholder="" name="firstName" required />
+
+            <label>Last Name</label>
+            <input type="text" placeholder="" name="lastName" required />
+
+            <label>Email</label>
+            <input type="email" placeholder="" name="email" required />
+
+            <label>Password</label>
+            <input type="password" placeholder="" name="password" required />
+
+            <label>Confirm Password</label>
+            <input type="password" placeholder="" name="confirmedPassword" required />
+
+            <div class="radio-box">
+
+                <p>Choose a category: </p>
+                <input type="radio" id="detoate" name="categorie" value="detoate">
+                <label for="detoate">de toate</label><br>
+
+                <input type="radio" id="vegetarian" name="categorie" value="vegetarian">
+                <label for="vegetarian">vegetarian</label><br>
+
+                <input type="radio" id="vegan" name="categorie" value="vegan">
+                <label for="vegan">vegan</label><br><br>
+            </div>
+            <button type="submit">Login</button>
+            <closeform></closeform>
+        </form>
+        <p>
+            By clicking the Sign Up button,you agree to our <br />
+            <a href="#">Terms and Condition</a> and <a href="#">Policy Privacy</a>
+        </p>
+    </div>
+    <p class="para-2">
+        Already have an account? @Html.ActionLink("Login in here","Login","Login",null,null)</a>
+    </p>
+</body>
+</html>
