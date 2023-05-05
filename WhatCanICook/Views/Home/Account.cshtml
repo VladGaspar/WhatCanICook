@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Account";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>What Can I Cook?</title>
+    <link href="~/Styles/styleAccoutPage.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+          rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="account-details">
+        <h3>Your details: </h3>
+
+        <div class="details">
+            Complete Name:
+        </div>
+
+        <div class="details">
+            Email:
+        </div>
+
+        <div class="details">
+            Password:
+        </div>
+
+        <div class="details">
+            Food preferences:
+        </div>
+
+        <div class="edit">
+            <p>Edit your account: @Html.ActionLink("Edit", "Edit", "Home", null, null) </p>
+           
+        </div>
+
+    </div>
+
+
+</body>
+</html>

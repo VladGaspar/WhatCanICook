@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Recipe";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>What Can I Cook?</title>
+    <link href="~/Styles/styleRecipePage.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+          rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+        function insertItemIntoListBox() {
+            var x = document.getElementById("access");
+            var item = document.getElementById("txtItem").value;
+            var option = document.createElement("option");
+            option.text = item;
+            x.add(option);
+            document.getElementById("txtItem").value = "";
+            //alert(item + " has been added.");
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Navigation bar -->
+ 
+    <div class="account-details">
+        <h3>Make a reciepe: </h3>
+
+        <form>
+            <div class="box">
+                <label>Reciepe Name:</label>
+                <input type="text" class="details">
+            </div>
+
+            <label>Add ingredient:</label>
+            <input type="text" placeholder="Type an ingredient" id="txtItem">
+            <p><input type="button" onclick="insertItemIntoListBox()" value="Add it to the list" /></p>
+            <br><br>
+            <select id="access" size="10">
+            </select>
+
+            <div class="box big">
+                <label>Write the steps for the recipe</label>
+                <input type="text" class="details">
+            </div>
+
+
+            <button type="submit">Save</button>
+        </form>
+
+    </div>
+
+
+</body>
+</html>
