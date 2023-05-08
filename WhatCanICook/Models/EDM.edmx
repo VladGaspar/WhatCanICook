@@ -49,7 +49,7 @@
           <Property Name="user_email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="user_password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="user_foodType" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="user_type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="user_type" Type="varchar" MaxLength="10" />
         </EntityType>
         <Association Name="FK_Ingredients">
           <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1" />
@@ -178,7 +178,7 @@
           <Property Name="user_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="user_foodType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="user_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Favorite_Recipes" Relationship="Self.FK_Users" FromRole="Users" ToRole="Favorite_Recipes" />
         </EntityType>
         <Association Name="FK_Reciepe_Favorite">

@@ -50,7 +50,7 @@ form {
         font-size: 18px;
     }
 
-    form input[type=email], form input[type=text], form input[type=password] {
+    form input[type=email], form input[type=text], form input[type=password]{
         width: 100%;
         padding: 7px;
         margin-bottom: 10px;
@@ -59,7 +59,7 @@ form {
         outline: none;
     }
 
-button[type="submit"] {
+button[type="submit"], input[type = submit] {
     width: 320px;
     height: 35px;
     margin-top: 20px;
@@ -71,7 +71,7 @@ button[type="submit"] {
     transition: all 0.3s ease-in-out
 }
 
-    button[type="submit"]:hover {
+    button[type="submit"]:hover, input[type = submit]:hover {
         background-color: white;
         color: #f35207;
         box-shadow: 0 4px 8px 0 #af9d9d;
@@ -82,6 +82,11 @@ p {
     padding-top: 20px;
     font-size: 15px;
     padding-bottom: 10px;
+}
+
+.radio-box{
+    display: flex;
+    flex-direction: column;
 }
 
 .radio-box p {

@@ -244,8 +244,6 @@
     <Content Include="Views\Home\Account.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Recipe.cshtml" />
-    <Content Include="Views\Login1\Login.cshtml" />
-    <Content Include="Views\Login1\SignUp.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>

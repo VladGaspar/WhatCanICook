@@ -2,77 +2,187 @@
 
 @{
     ViewBag.Title = "SignUp";
+    Layout = "";
+  
 }
 
-<h2>SignUp</h2>
+<!DOCTYPE html>
+<html>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<head>
+    <link href="~/Styles/style.css" rel="stylesheet" />
+</head>
 
-    <div class="form-horizontal">
+<body>
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="signup-box">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.user_firstName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.user_firstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.user_firstName, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.user_lastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.user_lastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.user_lastName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.user_email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.user_email, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <h1>Sign Up</h1>
+            <h4>It's free and only takes a minute</h4>
+            <div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.user_password, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <label>First Name</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.user_firstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.user_firstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.user_lastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.user_lastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.user_email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.user_password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.user_password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @* <div class="form-group">
+            <label>Conifrm Password</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.user_password, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.user_password, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.user_foodType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.user_foodType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.user_foodType, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="radio-box form-group">
+                    <p>Choose a category: </p>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.user_type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.user_type, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.user_type, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(model => model.user_foodType, "De toate")
+                        @Html.LabelFor(model => model.user_foodType, "De toate")
+                        @Html.ValidationMessageFor(model => model.user_foodType, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(model => model.user_foodType, "Vegetarian")
+                        @Html.LabelFor(model => model.user_foodType, "Vegetarian")
+                        @Html.ValidationMessageFor(model => model.user_foodType, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        @Html.RadioButtonFor(model => model.user_foodType, "Vegan")
+                        @Html.LabelFor(model => model.user_foodType, "Vegan")
+                        @Html.ValidationMessageFor(model => model.user_foodType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Register" class="btn btn-default" />
+               @* <div class="form-group">
+                    @Html.LabelFor(model => model.user_type, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.user_type, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.user_type, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+                
+              
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit">Login</button>
+                    </div>
+                </div>
             </div>
-        </div>
+        }
+        <p>
+            By clicking the Sign Up button,you agree to our <br />
+            <a href="#">Terms and Condition</a> and <a href="#">Policy Privacy</a>
+        </p>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
+    @*
+        @{
+            ViewBag.Title = "SignUp";
+            Layout = "";
+        }
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <title>Sign Up</title>
+            <link href="~/Styles/style.css" rel="stylesheet" />
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+                  rel="stylesheet" />
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+        </head>
+        <body>
+            <div class="signup-box">
+                <h1>Sign Up</h1>
+                <h4>It's free and only takes a minute</h4>
+                <form>
+                    <label>First Name</label>
+                    <input type="text" placeholder="" name="firstName" required />
+
+                    <label>Last Name</label>
+                    <input type="text" placeholder="" name="lastName" required />
+
+                    <label>Email</label>
+                    <input type="email" placeholder="" name="email" required />
+
+                    <label>Password</label>
+                    <input type="password" placeholder="" name="password" required />
+
+                    <label>Confirm Password</label>
+                    <input type="password" placeholder="" name="confirmedPassword" required />
+
+                    <div class="radio-box">
+
+                        <p>Choose a category: </p>
+                        <input type="radio" id="detoate" name="categorie" value="detoate">
+                        <label for="detoate">de toate</label><br>
+
+                        <input type="radio" id="vegetarian" name="categorie" value="vegetarian">
+                        <label for="vegetarian">vegetarian</label><br>
+
+                        <input type="radio" id="vegan" name="categorie" value="vegan">
+                        <label for="vegan">vegan</label><br><br>
+                    </div>
+                    <button type="submit">Login</button>
+                    <closeform></closeform>
+                </form>
+                <p>
+                    By clicking the Sign Up button,you agree to our <br />
+                    <a href="#">Terms and Condition</a> and <a href="#">Policy Privacy</a>
+                </p>
+            </div>
+            <p class="para-2">
+                Already have an account? @Html.ActionLink("Login in here", "Login", "Login", null, null)</a>
+            </p>
+        </body>
+        </html>
+    *@
+
+    <p class="para-2">
+        Already have an account? @Html.ActionLink("Login in here", "Login", "Account", null, null)
+    </p>
+</body>
+</html>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

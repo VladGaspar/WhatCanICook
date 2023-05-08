@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Home</title>
     @*  @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")*@
     <link href="~/Styles/styleNav.css" rel="stylesheet" />
@@ -41,20 +41,24 @@
         </nav>*@
     <!-- Navigation bar -->
     <nav>
-        <p><strong>What Can I Cook?</strong></p>
-        @* <a href="Home.html">Home</a>*@
-        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
-        @Html.ActionLink("Account", "Account", "Home", new { area = "" }, new { @class = "nav-link" })
-        @Html.ActionLink("Favorites", "Favorites", "Home", new { area = "" }, new { @class = "nav-link" })
+        <div class="first">
+            <p><strong>What Can I Cook?</strong></p>
+            @* <a href="Home.html">Home</a>*@
 
-        @{
-            if (isLoggedIn)
-            {
-                @Html.ActionLink(User.Identity.Name, "Index", "Home", new { area = "" }, new { @class = "nav-link" })
-                @Html.ActionLink("Signout", "Login", "Account", new { area = "" }, new { @class = "nav-link" })
+            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+            @Html.ActionLink("Account", "Account", "Home", new { area = "" }, new { @class = "nav-link" })
+            @Html.ActionLink("Favorites", "Favorites", "Home", new { area = "" }, new { @class = "nav-link" })
+        </div>
+        <div class="second">
+            @{
+                if (isLoggedIn)
+                {
+                    <p> @Html.Label("Hi, " + User.Identity.Name + "!", new { @class = "label-style" })</p>
+                    @Html.ActionLink("Signout", "Login", "Account", new { area = "" }, new { @class = "nav-link" })
+                }
+
             }
-        }
-
+        </div>
     </nav>
 
     <div class="container body-content">
