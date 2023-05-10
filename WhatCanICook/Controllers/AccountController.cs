@@ -43,6 +43,8 @@ namespace WebApplication1.Controllers
 
             if (userExist)
             {
+                FormsAuthentication.SetAuthCookie(u.user_firstName, false);
+
                 userModel.Email = u.user_email;
                 userModel.Password = u.user_password;
                 userModel.FirstName = u.user_firstName;

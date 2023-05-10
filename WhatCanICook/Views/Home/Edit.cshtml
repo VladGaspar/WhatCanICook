@@ -28,9 +28,8 @@
 
     <div class="box">
         <label>Email:</label>
-        @Html.TextBoxFor(model => model.Email,
-        new { disabled = "disabled", @readonly = "readonly", @Value = @WebApplication1.Controllers.AccountController.userModel.Email, @class = "text-box" })
-       @* @Html.TextBoxFor(model => model.Email, new { htmlAttributes = new { htmlAttributes = new { @Value = @WebApplication1.Controllers.AccountController.userModel.FirstName, readonly = "readonly" }})*@
+        @Html.TextBoxFor(model => model.Email,new {@readonly = "readonly", @Value = @WebApplication1.Controllers.AccountController.userModel.Email, @class = "text-box" })
+      
         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
 
     </div>
