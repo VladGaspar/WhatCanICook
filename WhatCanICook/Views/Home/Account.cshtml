@@ -1,8 +1,10 @@
-﻿
-@{
-    ViewBag.Title = "Account";
-}
+﻿@model WhatCanICook.Models.UserViewModel
 
+@{
+    ViewBag.Title = "AccountInfo";
+
+    
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,24 +22,34 @@
         <h3>Your details: </h3>
 
         <div class="details">
-            Complete Name:
+            <strong>Complete Name:</strong>
+            @* @Html.Label(@user.FirstName + " " + @user.LastName)*@
+            @WebApplication1.Controllers.AccountController.userModel.FirstName
+            
+            @WebApplication1.Controllers.AccountController.userModel.LastName
         </div>
 
         <div class="details">
-            Email:
+            <strong>Email:</strong>
+            @* @Html.Label(@user.Email)*@
+            @WebApplication1.Controllers.AccountController.userModel.Email
         </div>
 
         <div class="details">
-            Password:
+            <strong> Password:</strong>
+            @*   @Html.Label(user.Password)*@
+            @WebApplication1.Controllers.AccountController.userModel.Password
         </div>
 
         <div class="details">
-            Food preferences:
+            <strong>Food preferences:</strong>
+            @*  @Html.Label(user.FoodPreferance)*@
+            @WebApplication1.Controllers.AccountController.userModel.FoodPreferance
         </div>
 
         <div class="edit">
             <p>Edit your account: @Html.ActionLink("Edit", "Edit", "Home", null, null) </p>
-           
+
         </div>
 
     </div>

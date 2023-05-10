@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -10,8 +11,10 @@ namespace WebApplication1.Controllers
 {
     public class AccountController : Controller
     {
-        
+
         WhatCanICookDBEntities entity = new WhatCanICookDBEntities();
+
+        public static UserViewModel userModel = new UserViewModel();
 
         // GET: Account
         public ActionResult Login()
@@ -40,23 +43,33 @@ namespace WebApplication1.Controllers
 
             if (userExist)
             {
-                FormsAuthentication.SetAuthCookie(u.user_firstName, false);
+                userModel.Email = u.user_email;
+                userModel.Password = u.user_password;
+                userModel.FirstName = u.user_firstName;
+                userModel.LastName = u.user_lastName;
+                userModel.FoodPreferance = u.user_foodType;
+
                 return RedirectToAction("Index", "Home");
             }
 
             ModelState.AddModelError("", "Username or Password is wrong");
             return View();
-
         }
         [HttpPost]
         public ActionResult SignUp(User userinfo)
         {
-            entity.Users.Add(userinfo);
-            entity.SaveChanges();
-            return RedirectToAction("Login");
+            if (entity.Users.Any(x => x.user_email == userinfo.user_email))
+            {
+                ModelState.AddModelError("", "An account with this email already exist");
+                return View();
+            }
+            else
+            {
+                entity.Users.Add(userinfo);
+                entity.SaveChanges();
+                return RedirectToAction("Login");
+            }
         }
-
-
-
+    
     }
 }

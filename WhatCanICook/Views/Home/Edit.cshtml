@@ -1,6 +1,7 @@
-﻿
+﻿@model WhatCanICook.Models.UserViewModel
 @{
     ViewBag.Title = "Edit";
+
 }
 
 <!DOCTYPE html>
@@ -16,41 +17,65 @@
 </head>
 
 <body>
-        
+
     <div class="account-details">
         <h3>Your details: </h3>
 
-        <form>
+        @using (Html.BeginForm())
+        {
+            /* "Account", "Home"*/
+            @Html.AntiForgeryToken()
+
+    <div class="box">
+        <label>Email:</label>
+        @Html.TextBoxFor(model => model.Email,
+        new { disabled = "disabled", @readonly = "readonly", @Value = @WebApplication1.Controllers.AccountController.userModel.Email, @class = "text-box" })
+       @* @Html.TextBoxFor(model => model.Email, new { htmlAttributes = new { htmlAttributes = new { @Value = @WebApplication1.Controllers.AccountController.userModel.FirstName, readonly = "readonly" }})*@
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+    </div>
+
             <div class="box">
                 <label>First Name:</label>
-                <input type="text" class="details">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @Value = @WebApplication1.Controllers.AccountController.userModel.FirstName } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
             </div>
 
             <div class="box">
                 <label>Last Name:</label>
-                <input type="text" class="details">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @Value = @WebApplication1.Controllers.AccountController.userModel.LastName } })
             </div>
 
             <div class="box">
                 <label>Password:</label>
-                <input type="text" class="details">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @Value = @WebApplication1.Controllers.AccountController.userModel.Password } })
             </div>
 
             <div class="box">
-                <p>Choose a category:</p>
+                <div class="radio-box form-group">
+                    <p>Choose a food preference: </p>
 
-                <input type="radio" id="detoate" name="categorie" value="detoate">
-                <label for="detoate">de toate</label><br>
-
-                <input type="radio" id="vegetarian" name="categorie" value="vegetarian">
-                <label for="vegetarian">vegetarian</label><br>
-
-                <input type="radio" id="vegan" name="categorie" value="vegan">
-                <label for="vegan">vegan</label><br><br>
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(model => model.FoodPreferance, "None", new { @checked = true })
+                        @Html.LabelFor(model => model.FoodPreferance, "None")
+                        @Html.ValidationMessageFor(model => model.FoodPreferance, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(model => model.FoodPreferance, "Vegetarian", new { @checked = true })
+                        @Html.LabelFor(model => model.FoodPreferance, "Vegetarian")
+                        @Html.ValidationMessageFor(model => model.FoodPreferance, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        @Html.RadioButtonFor(model => model.FoodPreferance, "Vegan", new { @checked = true })
+                        @Html.LabelFor(model => model.FoodPreferance, "Vegan")
+                        @Html.ValidationMessageFor(model => model.FoodPreferance, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
 
             <button type="submit">Save</button>
-        </form>
+        }
 
     </div>
 
