@@ -1,4 +1,4 @@
-﻿
+﻿@model WhatCanICook.Models.ReciepeModel
 @{
     ViewBag.Title = "Recipe";
 }
@@ -33,29 +33,68 @@
     <div class="account-details">
         <h3>Make a reciepe: </h3>
 
-        <form>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="box">
                 <label>Reciepe Name:</label>
-                <input type="text" class="details">
+                @Html.EditorFor(model => model.Name)
             </div>
-
+            @*
             <label>Add ingredient:</label>
             <input type="text" placeholder="Type an ingredient" id="txtItem">
             <p><input type="button" onclick="insertItemIntoListBox()" value="Add it to the list" /></p>
             <br><br>
             <select id="access" size="10">
-            </select>
+            </select>*@
 
             <div class="box big">
-                <label>Write the steps for the recipe</label>
-                <input type="text" class="details">
+                <label>Write a description for the recipe:</label>
+                @Html.TextAreaFor(model => model.Description)
             </div>
 
+            <div class="box big">
+                <label>Write the full ingredient list and the detailed steps:</label>
+                @Html.TextAreaFor(model => model.Instructions)
+            </div>
+            <div>
+                @*<label>Image:</label>
+                <div>
+                    @Html.EditorFor(model => model.ImageUrl)
+                </div>*@
+            </div>
+             
+            <div class="x">
+                <strong><label>Key ingredients: </label></strong>
+                <label>(Used for searching the recipe)</label>
 
-            <button type="submit">Save</button>
-        </form>
+</div>
+                <div class="ingredients">
+                    <label>First Ingredient</label>
+                    @Html.EditorFor(model => model.Ingredient1, new { htmlAttributes = new { @Value = "Empty"} })
 
-    </div>
+                    <label>Second Ingredient</label>
+                    @Html.EditorFor(model => model.Ingredient2, new { htmlAttributes = new { @Value = "Empty" } })
+
+                    <label>Third Ingredient</label>
+                    @Html.EditorFor(model => model.Ingredient3, new { htmlAttributes = new { @Value = "Empty" } })
+
+                    <label>Forth Ingredient</label>
+                    @Html.EditorFor(model => model.Ingredient4, new { htmlAttributes = new { @Value = "Empty" } })
+
+                    <label>Fifth Ingredient</label>
+                    @Html.EditorFor(model => model.Ingredient5, new { htmlAttributes = new { @Value = "Empty" } })
+                </div>
+                <div class="details">
+                    <label>Author: </label>
+                    @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @Value = @WebApplication1.Controllers.AccountController.userModel.FirstName + " " + @WebApplication1.Controllers.AccountController.userModel.LastName } })
+
+                </div>
+                <button type="submit">Save</button>
+                }
+
+            </div>
 
 
 </body>

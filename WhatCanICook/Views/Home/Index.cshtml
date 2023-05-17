@@ -1,51 +1,26 @@
-﻿@{
+﻿@model WhatCanICook.Models.IngredientsListModel
+@{
     ViewBag.Title = "Home Page";
+    var retete = ViewBag.Retete;
+   
 }
 
-@*<main>
-        <section class="row" aria-labelledby="aspnetTitle">
-             <h1 id="title">ASP.NET</h1>
-             <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-             <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-         </section>
-
-         <div class="row">
-             <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-                 <h2 id="gettingStartedTitle">Getting started</h2>
-                 <p>
-                     ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                     enables a clean separation of concerns and gives you full control over markup
-                     for enjoyable, agile development.
-                 </p>
-                 <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-             </section>
-             <section class="col-md-4" aria-labelledby="librariesTitle">
-                 <h2 id="librariesTitle">Get more libraries</h2>
-                 <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-                 <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-             </section>
-             <section class="col-md-4" aria-labelledby="hostingTitle">
-                 <h2 id="hostingTitle">Web Hosting</h2>
-                 <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-                 <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-             </section>
-         </div>
-    </main>*@
 <!DOCTYPE html>
 <html>
 <head>
     <title>What Can I Cook?</title>
 
     <script type="text/javascript">
-		function insertItemIntoListBox() {
-			var x = document.getElementById("access");
-			var item = document.getElementById("txtItem").value;
-			var option = document.createElement("option");
-			option.text = item;
-			x.add(option);
-			document.getElementById("txtItem").value = "";
-			//alert(item + " has been added.");
-		}
+        function insertItemIntoListBox() {
+            var x = document.getElementById("access");
+            var item = document.getElementById("txtItem").value;
+            var option = document.createElement("option");
+            option.text = item;
+            x.add(option);
+            document.getElementById("txtItem").value = "";
+            //alert(item + " has been added.");
+
+        }
     </script>
     <link href="~/Styles/styleHomePage.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
@@ -55,7 +30,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 </head>
 <body>
-   
+
     <!-- Search bar -->
     <div class="main">
 
@@ -65,34 +40,92 @@
                 Search a recipe
             </h2>
 
-            <form>
-                <input type="text" placeholder="Type an ingredient" id="txtItem">
-                <p><input type="button" onclick="insertItemIntoListBox()" value="Add it to the list" /></p>
-                <br><br>
-                <select id="access" size="10">
-                </select>
-                <button type="submit">Search Recipe</button>
-                <p>Some search tips:</p>
+            @*<form id="myForm" action="hello/getForm" method="post">
+                    <input type="text" placeholder="Type an ingredient" id="txtItem">
+                    <p><input type="button" onclick="insertItemIntoListBox()" value="Add it to the list" /></p>
+                    <br><br>
+                    <select id="access" size="10" name="mySelect">
+                        <option>sex</option>
+                    </select>
+                    <button type="submit">Search Recipe</button>
+                    <p>Some search tips:</p>
+                    <ul>
+                        <li>Use at least 3 ingredients for best result</li>
+                        <br>
+                        <br>
+                        <li>If you misspelled an ingredient you can cilck it to remove it from the list</li>
+                    </ul>
+                </form>*@
+
+
+            @using (Html.BeginForm())
+            {
+                @*<input type="text" placeholder="Ingredient 1" id="txtItem">
+                    <input type="text" placeholder="Ingredient 2" id="txtItem">
+                    <input type="text" placeholder="Ingredient 3" id="txtItem">
+                    <input type="text" placeholder="Ingredient 4" id="txtItem">
+                    <input type="text" placeholder="Ingredient 5" id="txtItem">*@
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <label>First Ingredient</label>
+                @Html.EditorFor(model => model.Ingredient1, new { htmlAttributes = new { @Value = "Empty" } })
+
+                <label>Second Ingredient</label>
+                @Html.EditorFor(model => model.Ingredient2, new { htmlAttributes = new { @Value = "Empty" } })
+
+                <label>Third Ingredient</label>
+                @Html.EditorFor(model => model.Ingredient3, new { htmlAttributes = new { @Value = "Empty" } })
+
+                <label>Forth Ingredient</label>
+                @Html.EditorFor(model => model.Ingredient4, new { htmlAttributes = new { @Value = "Empty" } })
+
+                <label>Fifth Ingredient</label>
+                @Html.EditorFor(model => model.Ingredient5, new { htmlAttributes = new { @Value = "Empty" } })
                 <ul>
-                    <li>Use at least 3 ingredients for best result</li>
-                    <br>
-                    <br>
-                    <li>If you misspelled an ingredient you can cilck it to remove it from the list</li>
+                    <li>Search a recipe using up to 5 ingredients</li>
+                    <br></br>
+                    <li>If you want to use less then 5 ingredients leave "Empty" on the fields you don't use</li>
+                    @*<br />
+                    <li></li>*@
                 </ul>
-            </form>
+                <br>
+                <button type="submit">Search Recipe</button>
+            }
+
 
             <br><br>
-            
+
             <h2>
                 Create a new recipe
             </h2>
-            
+
             @Html.ActionLink("Create", "Recipe", "Home", null, null)
         </div>
 
         <div class="reciepe-list-container">
             <div class="reciepe-list">
+                @{
+                    if (@WhatCanICook.Controllers.HomeController.ingredientsListModel.recipeList != null)
+                    {
+                        foreach (@WhatCanICook.Models.ReciepeModel i in @WhatCanICook.Controllers.HomeController.reciepeModels)
+                        {
+                            <div class="container1">
+                                <div class="stanga">
 
+                                    <h2>@i.Name</h2>
+                                    <p>@i.Description</p>
+                                    <br />
+                                    <p>@i.Instructions</p>
+                                </div>
+                                <div class="dreapta">
+                                    <img src="data:image/jpeg;base64,@i.ImageUrl" alt="Image">
+                                    <label>Author:  @i.Author</label>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
             </div>
         </div>
 

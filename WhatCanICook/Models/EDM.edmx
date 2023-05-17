@@ -9,15 +9,14 @@
           <Key>
             <PropertyRef Name="users_id" />
           </Key>
-          <Property Name="favourite_recipe_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="favourite_recipe_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="users_id" Type="int" Nullable="false" />
-          <Property Name="recipe_id" Type="int" Nullable="false" />
+          <Property Name="recipe_id" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Ingredients">
           <Key>
-            <PropertyRef Name="ingredient_id" />
+            <PropertyRef Name="ingredient_name" />
           </Key>
-          <Property Name="ingredient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ingredient_name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Ingredients_Recipes">
@@ -25,17 +24,17 @@
             <PropertyRef Name="ingredient_recipe_id" />
           </Key>
           <Property Name="ingredient_recipe_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="recipe_id" Type="int" Nullable="false" />
-          <Property Name="ingredient_id" Type="int" Nullable="false" />
+          <Property Name="recipe_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ingredient_name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Recipes">
           <Key>
-            <PropertyRef Name="recipe_id" />
+            <PropertyRef Name="recipe_name" />
           </Key>
-          <Property Name="recipe_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="recipe_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="recipe_description" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="recipe_instructions" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="reciepe_image" Type="varbinary(max)" />
           <Property Name="recipe_author" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="approved" Type="bit" />
         </EntityType>
@@ -56,10 +55,10 @@
           <End Role="Ingredients_Recipes" Type="Self.Ingredients_Recipes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ingredients">
-              <PropertyRef Name="ingredient_id" />
+              <PropertyRef Name="ingredient_name" />
             </Principal>
             <Dependent Role="Ingredients_Recipes">
-              <PropertyRef Name="ingredient_id" />
+              <PropertyRef Name="ingredient_name" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -68,10 +67,10 @@
           <End Role="Ingredients_Recipes" Type="Self.Ingredients_Recipes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Recipes">
-              <PropertyRef Name="recipe_id" />
+              <PropertyRef Name="recipe_name" />
             </Principal>
             <Dependent Role="Ingredients_Recipes">
-              <PropertyRef Name="recipe_id" />
+              <PropertyRef Name="recipe_name" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -80,10 +79,10 @@
           <End Role="Favorite_Recipes" Type="Self.Favorite_Recipes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Recipes">
-              <PropertyRef Name="recipe_id" />
+              <PropertyRef Name="recipe_name" />
             </Principal>
             <Dependent Role="Favorite_Recipes">
-              <PropertyRef Name="favourite_recipe_id" />
+              <PropertyRef Name="favourite_recipe_name" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -131,17 +130,16 @@
           <Key>
             <PropertyRef Name="users_id" />
           </Key>
-          <Property Name="favourite_recipe_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="favourite_recipe_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="users_id" Type="Int32" Nullable="false" />
-          <Property Name="recipe_id" Type="Int32" Nullable="false" />
+          <Property Name="recipe_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Recipe" Relationship="Self.FK_Reciepe_Favorite" FromRole="Favorite_Recipes" ToRole="Recipes" />
           <NavigationProperty Name="User" Relationship="Self.FK_Users" FromRole="Favorite_Recipes" ToRole="Users" />
         </EntityType>
         <EntityType Name="Ingredient">
           <Key>
-            <PropertyRef Name="ingredient_id" />
+            <PropertyRef Name="ingredient_name" />
           </Key>
-          <Property Name="ingredient_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ingredient_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Ingredients_Recipes" Relationship="Self.FK_Ingredients" FromRole="Ingredients" ToRole="Ingredients_Recipes" />
         </EntityType>
@@ -150,19 +148,19 @@
             <PropertyRef Name="ingredient_recipe_id" />
           </Key>
           <Property Name="ingredient_recipe_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="recipe_id" Type="Int32" Nullable="false" />
-          <Property Name="ingredient_id" Type="Int32" Nullable="false" />
+          <Property Name="recipe_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ingredient_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Ingredient" Relationship="Self.FK_Ingredients" FromRole="Ingredients_Recipes" ToRole="Ingredients" />
           <NavigationProperty Name="Recipe" Relationship="Self.FK_Reciepe" FromRole="Ingredients_Recipes" ToRole="Recipes" />
         </EntityType>
         <EntityType Name="Recipe">
           <Key>
-            <PropertyRef Name="recipe_id" />
+            <PropertyRef Name="recipe_name" />
           </Key>
-          <Property Name="recipe_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="recipe_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="recipe_description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="recipe_instructions" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="reciepe_image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="recipe_author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="approved" Type="Boolean" />
           <NavigationProperty Name="Favorite_Recipes" Relationship="Self.FK_Reciepe_Favorite" FromRole="Recipes" ToRole="Favorite_Recipes" />
@@ -186,10 +184,10 @@
           <End Role="Favorite_Recipes" Type="Self.Favorite_Recipes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Recipes">
-              <PropertyRef Name="recipe_id" />
+              <PropertyRef Name="recipe_name" />
             </Principal>
             <Dependent Role="Favorite_Recipes">
-              <PropertyRef Name="favourite_recipe_id" />
+              <PropertyRef Name="favourite_recipe_name" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -210,10 +208,10 @@
           <End Role="Ingredients_Recipes" Type="Self.Ingredients_Recipes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ingredients">
-              <PropertyRef Name="ingredient_id" />
+              <PropertyRef Name="ingredient_name" />
             </Principal>
             <Dependent Role="Ingredients_Recipes">
-              <PropertyRef Name="ingredient_id" />
+              <PropertyRef Name="ingredient_name" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -222,10 +220,10 @@
           <End Role="Ingredients_Recipes" Type="Self.Ingredients_Recipes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Recipes">
-              <PropertyRef Name="recipe_id" />
+              <PropertyRef Name="recipe_name" />
             </Principal>
             <Dependent Role="Ingredients_Recipes">
-              <PropertyRef Name="recipe_id" />
+              <PropertyRef Name="recipe_name" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -261,7 +259,7 @@
           <EntitySetMapping Name="Favorite_Recipes">
             <EntityTypeMapping TypeName="WhatCanICookDBModel.Favorite_Recipes">
               <MappingFragment StoreEntitySet="Favorite_Recipes">
-                <ScalarProperty Name="favourite_recipe_id" ColumnName="favourite_recipe_id" />
+                <ScalarProperty Name="favourite_recipe_name" ColumnName="favourite_recipe_name" />
                 <ScalarProperty Name="users_id" ColumnName="users_id" />
                 <ScalarProperty Name="recipe_id" ColumnName="recipe_id" />
               </MappingFragment>
@@ -270,7 +268,6 @@
           <EntitySetMapping Name="Ingredients">
             <EntityTypeMapping TypeName="WhatCanICookDBModel.Ingredient">
               <MappingFragment StoreEntitySet="Ingredients">
-                <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
                 <ScalarProperty Name="ingredient_name" ColumnName="ingredient_name" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -279,18 +276,18 @@
             <EntityTypeMapping TypeName="WhatCanICookDBModel.Ingredients_Recipes">
               <MappingFragment StoreEntitySet="Ingredients_Recipes">
                 <ScalarProperty Name="ingredient_recipe_id" ColumnName="ingredient_recipe_id" />
-                <ScalarProperty Name="recipe_id" ColumnName="recipe_id" />
-                <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
+                <ScalarProperty Name="recipe_name" ColumnName="recipe_name" />
+                <ScalarProperty Name="ingredient_name" ColumnName="ingredient_name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Recipes">
             <EntityTypeMapping TypeName="WhatCanICookDBModel.Recipe">
               <MappingFragment StoreEntitySet="Recipes">
-                <ScalarProperty Name="recipe_id" ColumnName="recipe_id" />
                 <ScalarProperty Name="recipe_name" ColumnName="recipe_name" />
                 <ScalarProperty Name="recipe_description" ColumnName="recipe_description" />
                 <ScalarProperty Name="recipe_instructions" ColumnName="recipe_instructions" />
+                <ScalarProperty Name="reciepe_image" ColumnName="reciepe_image" />
                 <ScalarProperty Name="recipe_author" ColumnName="recipe_author" />
                 <ScalarProperty Name="approved" ColumnName="approved" />
               </MappingFragment>

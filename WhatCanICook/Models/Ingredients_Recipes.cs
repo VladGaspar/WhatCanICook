@@ -15,8 +15,8 @@ namespace WhatCanICook.Models
     public partial class Ingredients_Recipes
     {
         public int ingredient_recipe_id { get; set; }
-        public int recipe_id { get; set; }
-        public int ingredient_id { get; set; }
+        public string recipe_name { get; set; }
+        public string ingredient_name { get; set; }
     
         public virtual Ingredient Ingredient { get; set; }
         public virtual Recipe Recipe { get; set; }

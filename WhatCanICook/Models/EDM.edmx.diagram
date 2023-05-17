@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="362b42c892f245f5a0038c7ea6e27bd4" Name="Diagram1">
+      <Diagram DiagramId="5f4af1d855804151816c77873edd913a" Name="Diagram1">
         <EntityTypeShape EntityType="WhatCanICookDBModel.Favorite_Recipes" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WhatCanICookDBModel.Ingredient" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WhatCanICookDBModel.Ingredient" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WhatCanICookDBModel.Ingredients_Recipes" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WhatCanICookDBModel.Recipe" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WhatCanICookDBModel.User" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />

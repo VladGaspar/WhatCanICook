@@ -14,9 +14,9 @@ namespace WhatCanICook.Models
     
     public partial class Favorite_Recipes
     {
-        public int favourite_recipe_id { get; set; }
+        public string favourite_recipe_name { get; set; }
         public int users_id { get; set; }
-        public int recipe_id { get; set; }
+        public string recipe_id { get; set; }
     
         public virtual Recipe Recipe { get; set; }
         public virtual User User { get; set; }

@@ -39,7 +39,7 @@ namespace WebApplication1.Controllers
         {
             bool userExist = entity.Users.Any(x => x.user_email == credentials.Email && x.user_password == credentials.Password);
             User u = entity.Users.FirstOrDefault(x => x.user_email == credentials.Email && x.user_password == credentials.Password);
-
+            
 
             if (userExist)
             {
@@ -57,6 +57,7 @@ namespace WebApplication1.Controllers
             ModelState.AddModelError("", "Username or Password is wrong");
             return View();
         }
+
         [HttpPost]
         public ActionResult SignUp(User userinfo)
         {
@@ -72,6 +73,6 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Login");
             }
         }
-    
+
     }
 }

@@ -21,10 +21,10 @@ namespace WhatCanICook.Models
             this.Ingredients_Recipes = new HashSet<Ingredients_Recipes>();
         }
     
-        public int recipe_id { get; set; }
         public string recipe_name { get; set; }
         public string recipe_description { get; set; }
         public string recipe_instructions { get; set; }
+        public byte[] reciepe_image { get; set; }
         public string recipe_author { get; set; }
         public Nullable<bool> approved { get; set; }
     
